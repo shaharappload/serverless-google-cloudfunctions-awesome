@@ -47,7 +47,7 @@ module.exports = {
       funcTemplate.properties.timeout = _.get(funcObject, 'timeout')
         || _.get(this, 'serverless.service.provider.timeout')
         || '60s';
-       funcTemplate.properties.serviceAccount = _.get(funcObject, 'serviceAccount')
+       funcTemplate.properties.serviceAccountEmail = _.get(funcObject, 'serviceAccount')
         || _.get(this, 'serverless.service.provider.serviceAccount')
         || '';
       funcTemplate.properties.labels = _.assign({},
@@ -59,8 +59,8 @@ module.exports = {
         funcObject.environment,
       );
       
-      if (!funcTemplate.properties.serviceAccount) {
-        delete funcTemplate.properties.serviceAccount;
+      if (!funcTemplate.properties.serviceAccountEmail) {
+        delete funcTemplate.properties.serviceAccountEmail;
       }
       
       if (!_.size(funcTemplate.properties.environmentVariables)) {
