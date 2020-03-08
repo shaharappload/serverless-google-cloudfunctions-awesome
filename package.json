@@ -1,5 +1,5 @@
 {
-  "name": "serverless-google-cloudfunctions-awesome",
+  "name": "serverless-google-cloudfunctions-amazing",
   "version": "2.3.3",
   "description": "Provider plugin for the Serverless Framework v1.x which adds support for Google Cloud Functions.",
   "main": "index.js",
@@ -24,14 +24,14 @@
   ],
   "license": "MIT",
   "repository": {
-    "git": "https://github.com/digital-dynamite/serverless-google-cloudfunctions-awesome"
+    "git": "https://github.com/shaharappload/serverless-google-cloudfunctions-awesome"
   },
   "scripts": {
     "test": "jest --maxWorkers=5",
     "yarn co": "jest --maxWorkers=5 --coverage",
     "lint": "eslint . --cache"
   },
-  "homepage": "https://github.com/digital-dynamite/serverless-google-cloudfunctions-awesome",
+  "homepage": "https://github.com/shaharappload/serverless-google-cloudfunctions-awesome",
   "keywords": [
     "serverless",
     "serverless framework",
