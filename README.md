@@ -114,6 +114,36 @@ KEY: my-prod-key
 LANG: ca
 ```
 
+### Service account
+Usage:
+```
+functions:
+  example:
+    serviceAccount: <SERVICE_ACCOUNT_EMAIL>
+```
+
+### VPC Connector
+Simple example:
+```
+functions:
+  example:
+    vpcConnector: <VPC_CONNECTOR_NAME>
+```
+
+Setting egress settings:
+```
+functions:
+  example:
+    vpcConnector: <VPC_CONNECTOR_NAME>
+    vpcConnectorEgressSettings: "ALL_TRAFFIC" | "PRIVATE_RANGES_ONLY"
+```
+
+When `vcpConnector` is set, `vpcConnectorEgressSettings` is set to `ALL_TRAFFIC` by default.
+
+[More details on VPC for Cloud Founctions](https://cloud.google.com/functions/docs/networking/connecting-vpc)
+
+
+
 
 *Special thanks to [@CaptainJojo](https://github.com/CaptainJojo) for his contribution to these awesome features.*
 
