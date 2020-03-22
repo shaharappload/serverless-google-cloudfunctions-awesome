@@ -47,9 +47,17 @@ module.exports = {
       funcTemplate.properties.timeout = _.get(funcObject, 'timeout')
         || _.get(this, 'serverless.service.provider.timeout')
         || '60s';
-       funcTemplate.properties.serviceAccountEmail = _.get(funcObject, 'serviceAccount')
+      funcTemplate.properties.serviceAccountEmail = _.get(funcObject, 'serviceAccount')
         || _.get(this, 'serverless.service.provider.serviceAccount')
         || '';
+      funcTemplate.properties.vpcConnector = _.get(funcObject, 'vpcConnector')
+        || '';
+        
+      if (funcTemplate.properties.vpcConnector && funcTemplate.properties.vpcConnector.length > 0) {
+        funcTemplate.properties.vpcConnectorEgressSettings = _.get(funcObject, 'vpcConnectorEgressSettings')
+          || "ALL_TRAFFIC";
+      }
+
       funcTemplate.properties.labels = _.assign({},
         _.get(this, 'serverless.service.provider.labels') || {},
         _.get(funcObject, 'labels') || {},
@@ -62,7 +70,15 @@ module.exports = {
       if (!funcTemplate.properties.serviceAccountEmail) {
         delete funcTemplate.properties.serviceAccountEmail;
       }
-      
+
+      if (!funcTemplate.properties.vpcConnector) {
+        delete funcTemplate.properties.vpcConnector;
+      }
+
+      if (!funcTemplate.properties.vpcConnectorEgressSettings) {
+        delete funcTemplate.properties.vpcConnectorEgressSettings;
+      }
+
       if (!_.size(funcTemplate.properties.environmentVariables)) {
         delete funcTemplate.properties.environmentVariables;
       }
