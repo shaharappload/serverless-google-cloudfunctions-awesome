@@ -38,6 +38,8 @@ module.exports = {
           }/${this.serverless.service.package.artifactFilePath}`,
       );
 
+      const eventType = Object.keys(funcObject.events[0])[0];
+
       funcTemplate.properties.availableMemoryMb = _.get(funcObject, 'memorySize')
         || _.get(this, 'serverless.service.provider.memorySize')
         || 256;
@@ -52,11 +54,16 @@ module.exports = {
         || '';
       funcTemplate.properties.vpcConnector = _.get(funcObject, 'vpcConnector')
         || '';
-        
+
       if (funcTemplate.properties.vpcConnector && funcTemplate.properties.vpcConnector.length > 0) {
         funcTemplate.properties.vpcConnectorEgressSettings = _.get(funcObject, 'vpcConnectorEgressSettings')
           || "ALL_TRAFFIC";
       }
+
+      if (eventType == 'http') {
+        funcTemplate.properties.unauthenticatedAccess = _.get(funcObject, 'unauthenticatedAccess')
+          || false;
+      } 
 
       funcTemplate.properties.labels = _.assign({},
         _.get(this, 'serverless.service.provider.labels') || {},
@@ -79,11 +86,13 @@ module.exports = {
         delete funcTemplate.properties.vpcConnectorEgressSettings;
       }
 
+      if (!funcTemplate.properties.unauthenticatedAccess) {
+        delete funcTemplate.properties.unauthenticatedAccess;
+      }
+
       if (!_.size(funcTemplate.properties.environmentVariables)) {
         delete funcTemplate.properties.environmentVariables;
       }
-
-      const eventType = Object.keys(funcObject.events[0])[0];
 
       if (eventType === 'http') {
         const url = funcObject.events[0].http;

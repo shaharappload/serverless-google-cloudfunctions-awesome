@@ -143,7 +143,16 @@ When `vcpConnector` is set, `vpcConnectorEgressSettings` is set to `ALL_TRAFFIC`
 [More details on VPC for Cloud Founctions](https://cloud.google.com/functions/docs/networking/connecting-vpc)
 
 
+### HTTP unauthenticatedAccess
+```
+functions:
+  example:
+    unauthenticatedAccess: true
+```
 
+unauthenticatedAccess default value is `false`.
+
+---
 
 *Special thanks to [@CaptainJojo](https://github.com/CaptainJojo) for his contribution to these awesome features.*
 
