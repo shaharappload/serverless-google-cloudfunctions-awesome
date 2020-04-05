@@ -33,7 +33,7 @@ module.exports = {
 
       validateHandlerProperty(funcObject, functionName);
       validateEventsProperty(funcObject, functionName);
-      const funcTemplate = getFunctionTemplate(
+      let funcTemplate = getFunctionTemplate(
         funcObject,
         _.get(this, "serverless.service.provider.region", this.options.region),
         this.options.stage,
@@ -75,9 +75,9 @@ module.exports = {
 
       if (
         eventType == "http" &&
-        funcTemplate.properties.unauthenticatedAccess == true
+        _.get(funcObject, "unauthenticatedAccess") == true
       ) {
-        accessControlTemplate.gcpIamPolicy.bindings.push({
+        accessControlTemplate.accessControl.gcpIamPolicy.bindings.push({
           role: "roles/cloudfunctions.invoker",
           members: ["allUsers"],
         });
