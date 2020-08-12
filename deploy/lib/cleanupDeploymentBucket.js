@@ -49,6 +49,7 @@ module.exports = {
       const params = {
         bucket: object.bucket,
         object: encodeURIComponent(object.name),
+        ifGenerationNotMatch: 0
       };
       return this.provider.request('storage', 'objects', 'delete', params);
     });
