@@ -1,6 +1,6 @@
 {
   "name": "serverless-google-cloudfunctions-amazing",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Provider plugin for the Serverless Framework v1.x which adds support for Google Cloud Functions.",
   "main": "index.js",
   "author": "serverless.com",
