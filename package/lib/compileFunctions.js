@@ -83,6 +83,10 @@ module.exports = {
         });
       }
 
+      if (funcObject.maxInstances) {
+        funcTemplate.properties.maxInstances = funcObject.maxInstances;
+      }
+
       funcTemplate.properties.labels = _.assign(
         {},
         _.get(this, "serverless.service.provider.labels") || {},
